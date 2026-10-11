@@ -3,7 +3,9 @@ package com.sudhir.safecopy.ui.editor
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -86,6 +88,11 @@ fun EditorRoute(onNext: () -> Unit, onExit: () -> Unit) {
                         Icon(painterResource(R.drawable.ic_arrow_back), contentDescription = stringResource(R.string.action_back))
                     }
                 },
+                actions = {
+                    IconButton(onClick = vm::openFields, enabled = !state.detecting) {
+                        Icon(painterResource(R.drawable.ic_tune), contentDescription = stringResource(R.string.editor_fields))
+                    }
+                },
             )
         },
         bottomBar = {
@@ -94,10 +101,10 @@ fun EditorRoute(onNext: () -> Unit, onExit: () -> Unit) {
                     Modifier.fillMaxWidth().padding(horizontal = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    FilledIconToggleButton(checked = state.drawMode, onCheckedChange = { vm.toggleDrawMode() }) {
+                    FilledIconToggleButton(checked = state.drawMode, onCheckedChange = { vm.toggleDrawMode() }, enabled = !state.detecting) {
                         Icon(painterResource(R.drawable.ic_add_box), contentDescription = stringResource(R.string.editor_add_mask))
                     }
-                    ToolButton(R.drawable.ic_rotate_right, R.string.editor_rotate, enabled = !state.rotating, onClick = vm::rotate)
+                    ToolButton(R.drawable.ic_rotate_right, R.string.editor_rotate, enabled = !state.rotating && !state.detecting, onClick = vm::rotate)
                     ToolButton(R.drawable.ic_undo, R.string.editor_undo, enabled = state.canUndo, onClick = vm::undo)
                     ToolButton(R.drawable.ic_redo, R.string.editor_redo, enabled = state.canRedo, onClick = vm::redo)
                     ToolButton(
@@ -110,7 +117,7 @@ fun EditorRoute(onNext: () -> Unit, onExit: () -> Unit) {
                             vm.next()
                             onNext()
                         },
-                        enabled = state.image != null && !state.rotating,
+                        enabled = state.image != null && !state.rotating && !state.detecting,
                     ) { Text(stringResource(R.string.action_next)) }
                 }
             }
@@ -144,7 +151,35 @@ fun EditorRoute(onNext: () -> Unit, onExit: () -> Unit) {
                 }
             }
             if (state.rotating) CircularProgressIndicator()
+            if (state.detecting) {
+                Surface(
+                    color = MaterialTheme.colorScheme.scrim.copy(alpha = 0.5f),
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        CircularProgressIndicator()
+                        Text(
+                            stringResource(R.string.editor_detecting),
+                            color = MaterialTheme.colorScheme.inverseOnSurface,
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
+                }
+            }
         }
+    }
+
+    if (state.showFieldsSheet && !state.detecting) {
+        FieldsSheet(
+            docType = state.docType,
+            fields = state.fields,
+            qrHint = state.qrHint,
+            onToggle = vm::setFieldEnabled,
+            onDismiss = vm::closeFields,
+        )
     }
 
     if (confirmDiscard) {

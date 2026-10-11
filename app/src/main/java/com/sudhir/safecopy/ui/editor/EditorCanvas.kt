@@ -20,6 +20,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -33,12 +34,16 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.sudhir.safecopy.domain.mask.Corner
 import com.sudhir.safecopy.domain.mask.MaskGeometry
+import com.sudhir.safecopy.domain.model.Confidence
 import com.sudhir.safecopy.domain.model.MaskRect
 import com.sudhir.safecopy.domain.model.Point
 import com.sudhir.safecopy.domain.model.Rect
 import kotlin.math.roundToInt
 
 private const val DOUBLE_TAP_ZOOM = 2.5f
+
+/** Amber outline: "detected, but please check this one". */
+private val LOW_CONFIDENCE = Color(0xFFFFB300)
 private const val DOUBLE_TAP_MS = 300L
 
 private sealed interface Drag {
@@ -107,7 +112,8 @@ fun EditorCanvas(
                     val down = awaitFirstDown()
                     val t0 = transform()
                     val start = t0.toBitmap(down.position.toPoint())
-                    val selected = currentMasks.firstOrNull { it.id == currentSelected }
+                    val visible = currentMasks.filter { it.enabled }
+                    val selected = visible.firstOrNull { it.id == currentSelected }
 
                     var drag: Drag = when {
                         selected != null && hitCorner(selected.rect, t0, down.position, handleRadiusPx) != null ->
@@ -115,7 +121,7 @@ fun EditorCanvas(
                         else -> {
                             // Prefer the selected mask, then the top-most one under the finger.
                             val hit = selected?.takeIf { it.rect.contains(start) }
-                                ?: currentMasks.lastOrNull { it.rect.contains(start) }
+                                ?: visible.lastOrNull { it.rect.contains(start) }
                             when {
                                 hit != null -> Drag.Move(hit)
                                 currentDrawMode -> Drag.Draw
@@ -213,13 +219,24 @@ fun EditorCanvas(
         )
 
         val editing = preview
+        // Switched-off detections: dashed outline only, so the user can see what was found.
+        for (mask in masks) {
+            if (mask.enabled) continue
+            val a = t.toView(Point(mask.rect.left, mask.rect.top))
+            val b = t.toView(Point(mask.rect.right, mask.rect.bottom))
+            drawRect(
+                Color.White.copy(alpha = 0.8f), Offset(a.x, a.y), Size(b.x - a.x, b.y - a.y),
+                style = Stroke(strokePx, pathEffect = PathEffect.dashPathEffect(floatArrayOf(strokePx * 4, strokePx * 3))),
+            )
+        }
         for (mask in masks) {
             if (!mask.enabled) continue
             val rect = if (editing?.first == mask.id) editing.second else mask.rect
-            drawMask(t, rect, selected = mask.id == selectedId, selectedColor, strokePx, handleDrawRadius)
+            val outline = if (mask.confidence == Confidence.LOW) LOW_CONFIDENCE else Color.White
+            drawMask(t, rect, selected = mask.id == selectedId, selectedColor, strokePx, handleDrawRadius, outline)
         }
         if (editing != null && editing.first == null) {
-            drawMask(t, editing.second, selected = true, selectedColor, strokePx, handleRadius = 0f)
+            drawMask(t, editing.second, selected = true, selectedColor, strokePx, handleRadius = 0f, Color.White)
         }
     }
 }
@@ -232,13 +249,14 @@ private fun DrawScope.drawMask(
     selectedColor: Color,
     strokePx: Float,
     handleRadius: Float,
+    outline: Color,
 ) {
     val a = t.toView(Point(rect.left, rect.top))
     val b = t.toView(Point(rect.right, rect.bottom))
     val size = Size(b.x - a.x, b.y - a.y)
     val offset = Offset(a.x, a.y)
     drawRect(Color.Black.copy(alpha = 0.6f), offset, size)
-    drawRect(if (selected) selectedColor else Color.White, offset, size, style = Stroke(strokePx))
+    drawRect(if (selected) selectedColor else outline, offset, size, style = Stroke(if (outline == Color.White) strokePx else strokePx * 1.5f))
     if (selected && handleRadius > 0f) {
         for (c in listOf(Offset(a.x, a.y), Offset(b.x, a.y), Offset(a.x, b.y), Offset(b.x, b.y))) {
             drawCircle(Color.White, handleRadius, c)

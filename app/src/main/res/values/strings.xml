@@ -31,6 +31,30 @@
     <string name="editor_delete_mask">Delete mask</string>
     <string name="editor_draw_hint">Drag over anything you want hidden</string>
 
+    <string name="editor_fields">Detected fields</string>
+    <string name="editor_detecting">Finding sensitive details…</string>
+
+    <string name="fields_doc_aadhaar">Aadhaar card</string>
+    <string name="fields_doc_pan">PAN card</string>
+    <string name="fields_doc_unknown">Unknown document</string>
+    <string name="fields_intro">These will be covered with solid black. Turn off anything you need to keep visible.</string>
+    <string name="fields_nothing_found">Couldn\'t find details automatically. Draw boxes over anything you want hidden.</string>
+    <string name="fields_qr_hint">If your card has a QR code, draw a box over it. It wasn\'t detected in this photo.</string>
+    <string name="fields_needs_check">Check this one</string>
+    <string name="fields_done">Done</string>
+    <plurals name="fields_found_count">
+        <item quantity="one">%d found</item>
+        <item quantity="other">%d found</item>
+    </plurals>
+    <string name="field_aadhaar_number">Aadhaar number (first 8 digits)</string>
+    <string name="field_vid">Virtual ID (VID)</string>
+    <string name="field_qr">QR code</string>
+    <string name="field_pan">PAN (first 6 characters)</string>
+    <string name="field_dob">Date of birth</string>
+    <string name="field_address">Address</string>
+    <string name="field_photo">Photo</string>
+    <string name="field_manual">Your boxes</string>
+
     <string name="export_title">Preview</string>
     <string name="export_preview_description">Safe copy that will be shared</string>
     <string name="export_file_info">%1$d × %2$d px · %3$s · JPEG, no metadata</string>

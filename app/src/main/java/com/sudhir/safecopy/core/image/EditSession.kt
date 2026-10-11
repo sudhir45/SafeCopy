@@ -1,6 +1,7 @@
 package com.sudhir.safecopy.core.image
 
 import android.graphics.Bitmap
+import com.sudhir.safecopy.domain.detect.DetectionResult
 import com.sudhir.safecopy.domain.model.MaskRect
 import com.sudhir.safecopy.domain.model.WatermarkConfig
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,10 +25,14 @@ class EditSession {
     /** Watermark as of the Watermark screen's last "Next"; read by the export step. */
     var watermark: WatermarkConfig? = null
 
+    /** Detection result for this image; null until detection has run (once per image). */
+    var detection: DetectionResult? = null
+
     fun start(bitmap: Bitmap) {
         _image.value = bitmap
         masks = emptyList()
         watermark = null
+        detection = null
     }
 
     fun replace(bitmap: Bitmap) {
@@ -39,5 +44,6 @@ class EditSession {
         _image.value = null
         masks = emptyList()
         watermark = null
+        detection = null
     }
 }

@@ -22,6 +22,19 @@ data class Rect(val left: Float, val top: Float, val right: Float, val bottom: F
 
     fun union(o: Rect) = Rect(min(left, o.left), min(top, o.top), max(right, o.right), max(bottom, o.bottom))
 
+    val area: Float get() = width.coerceAtLeast(0f) * height.coerceAtLeast(0f)
+
+    /** Intersection over union, 0..1. */
+    fun iou(o: Rect): Float {
+        val inter = Rect(max(left, o.left), max(top, o.top), min(right, o.right), min(bottom, o.bottom))
+        if (inter.width <= 0f || inter.height <= 0f) return 0f
+        val i = inter.area
+        return i / (area + o.area - i)
+    }
+
+    /** Grows the rect by [dx] on the left and right and [dy] on the top and bottom. */
+    fun inflate(dx: Float, dy: Float) = Rect(left - dx, top - dy, right + dx, bottom + dy)
+
     companion object {
         /** Rectangle spanned by two arbitrary corners. */
         fun fromCorners(a: Point, b: Point) = Rect(min(a.x, b.x), min(a.y, b.y), max(a.x, b.x), max(a.y, b.y))

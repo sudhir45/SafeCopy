@@ -7,6 +7,7 @@ import com.sudhir.safecopy.core.files.TempFiles
 import com.sudhir.safecopy.core.image.EditSession
 import com.sudhir.safecopy.core.image.ImageLoader
 import com.sudhir.safecopy.data.settings.SettingsRepository
+import com.sudhir.safecopy.ml.DetectionService
 import com.sudhir.safecopy.render.Exporter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +23,9 @@ class AppContainer(context: Context) {
     val editSession = EditSession()
     val exporter = Exporter(context, tempFiles)
     val settings = SettingsRepository(context)
+
+    /** Created on first use: loading the ML Kit models costs startup time. */
+    val detection by lazy { DetectionService() }
 
     /** Image URI received through the share sheet, waiting to be imported by Home. */
     val incomingShare = MutableStateFlow<Uri?>(null)

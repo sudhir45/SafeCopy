@@ -19,3 +19,7 @@ private_samples/
 
 # Claude Code per-user settings
 .claude/settings.local.json
+
+# Python venv for tools/fixtures (dev only)
+tools/fixtures/.venv/
+__pycache__/

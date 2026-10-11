@@ -1,0 +1,1289 @@
+[
+ {
+  "file": "aadhaar_front_base.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     810.7,
+     574,
+     1047.5,
+     609
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     965,
+     1154.9,
+     1030
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     820.0,
+     1084,
+     1209.3,
+     1112
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1600,
+     485,
+     1900,
+     785
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_rot90.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 90,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     891,
+     810.7,
+     926,
+     1047.5
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     470,
+     720.0,
+     535,
+     1154.9
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     388,
+     820.0,
+     416,
+     1209.3
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     715,
+     1600,
+     1015,
+     1900
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_rot180.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 180,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     1152.5,
+     891,
+     1389.3,
+     926
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     1045.1,
+     470,
+     1480.0,
+     535
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     990.7,
+     388,
+     1380.0,
+     416
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     300,
+     715,
+     600,
+     1015
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_rot270.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 270,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     574,
+     1152.5,
+     609,
+     1389.3
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     965,
+     1045.1,
+     1030,
+     1480.0
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     1084,
+     990.7,
+     1112,
+     1380.0
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     485,
+     300,
+     785,
+     600
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_tilt+8.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     927.1,
+     681.5,
+     1166.5,
+     749.1
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     778.7,
+     1056.0,
+     1218.4,
+     1180.9
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     866.3,
+     1187.8,
+     1255.8,
+     1269.7
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1684.3,
+     703.2,
+     2023.1,
+     1042.0
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_tilt-8.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     883.0,
+     729.0,
+     1122.4,
+     796.6
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     847.6,
+     1101.3,
+     1287.3,
+     1226.2
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     963.2,
+     1211.5,
+     1352.6,
+     1293.4
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1652.3,
+     522.2,
+     1991.1,
+     861.1
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_jpeg_q20.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     810.7,
+     574,
+     1047.5,
+     609
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     965,
+     1154.9,
+     1030
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     820.0,
+     1084,
+     1209.3,
+     1112
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1600,
+     485,
+     1900,
+     785
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_dark.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     810.7,
+     574,
+     1047.5,
+     609
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     965,
+     1154.9,
+     1030
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     820.0,
+     1084,
+     1209.3,
+     1112
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1600,
+     485,
+     1900,
+     785
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_glare.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     810.7,
+     574,
+     1047.5,
+     609
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     965,
+     1154.9,
+     1030
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     820.0,
+     1084,
+     1209.3,
+     1112
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1600,
+     485,
+     1900,
+     785
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_small800.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 800,
+  "height": 545,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     294.8,
+     208.7,
+     380.9,
+     221.5
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     261.8,
+     350.9,
+     420.0,
+     374.5
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     298.2,
+     394.2,
+     439.7,
+     404.4
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     581.8,
+     176.4,
+     690.9,
+     285.5
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_front_large4000.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 4000,
+  "height": 2727,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     1474.0,
+     1043.6,
+     1904.5,
+     1107.3
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     1309.1,
+     1754.5,
+     2099.8,
+     1872.7
+    ]
+   },
+   {
+    "type": "AADHAAR_VID",
+    "rect": [
+     1490.9,
+     1970.9,
+     2198.7,
+     2021.8
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     2909.1,
+     881.8,
+     3454.5,
+     1427.3
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_base.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     280,
+     433,
+     845,
+     620
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1520,
+     405,
+     1920,
+     805
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     1025,
+     1154.9,
+     1090
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_rot90.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 90,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     880,
+     280,
+     1067,
+     845
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     695,
+     1520,
+     1095,
+     1920
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     410,
+     720.0,
+     475,
+     1154.9
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_rot180.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 180,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     1355,
+     880,
+     1920,
+     1067
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     280,
+     695,
+     680,
+     1095
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     1045.1,
+     410,
+     1480.0,
+     475
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_rot270.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 270,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     433,
+     1355,
+     620,
+     1920
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     405,
+     280,
+     805,
+     680
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     1025,
+     1045.1,
+     1090,
+     1480.0
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_tilt+8.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     400.1,
+     468.0,
+     985.6,
+     731.8
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1602.3,
+     612.8,
+     2054.0,
+     1064.6
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     770.4,
+     1115.4,
+     1210.1,
+     1240.3
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_tilt-8.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     337.9,
+     617.6,
+     923.4,
+     881.4
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1561.9,
+     440.2,
+     2013.7,
+     892.0
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     856.0,
+     1160.7,
+     1295.7,
+     1285.6
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_jpeg_q20.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     280,
+     433,
+     845,
+     620
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1520,
+     405,
+     1920,
+     805
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     1025,
+     1154.9,
+     1090
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_dark.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     280,
+     433,
+     845,
+     620
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1520,
+     405,
+     1920,
+     805
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     1025,
+     1154.9,
+     1090
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_glare.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     280,
+     433,
+     845,
+     620
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1520,
+     405,
+     1920,
+     805
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     720.0,
+     1025,
+     1154.9,
+     1090
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_small800.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 800,
+  "height": 545,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     101.8,
+     157.5,
+     307.3,
+     225.5
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     552.7,
+     147.3,
+     698.2,
+     292.7
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     261.8,
+     372.7,
+     420.0,
+     396.4
+    ]
+   }
+  ]
+ },
+ {
+  "file": "aadhaar_back_large4000.jpg",
+  "docType": "AADHAAR",
+  "rotatedCw": 0,
+  "width": 4000,
+  "height": 2727,
+  "fields": [
+   {
+    "type": "ADDRESS",
+    "rect": [
+     509.1,
+     787.3,
+     1536.4,
+     1127.3
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     2763.6,
+     736.4,
+     3490.9,
+     1463.6
+    ]
+   },
+   {
+    "type": "AADHAAR_NUMBER",
+    "rect": [
+     1309.1,
+     1863.6,
+     2099.8,
+     1981.8
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_base.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     280.0,
+     695,
+     530.3,
+     732
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     280.0,
+     903,
+     641.8,
+     966
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1350,
+     1005,
+     1580,
+     1235
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_rot90.jpg",
+  "docType": "PAN",
+  "rotatedCw": 90,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     768,
+     280.0,
+     805,
+     530.3
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     534,
+     280.0,
+     597,
+     641.8
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     265,
+     1350,
+     495,
+     1580
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_rot180.jpg",
+  "docType": "PAN",
+  "rotatedCw": 180,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     1669.7,
+     768,
+     1920.0,
+     805
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     1558.2,
+     534,
+     1920.0,
+     597
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     620,
+     265,
+     850,
+     495
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_rot270.jpg",
+  "docType": "PAN",
+  "rotatedCw": 270,
+  "width": 1500,
+  "height": 2200,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     695,
+     1669.7,
+     732,
+     1920.0
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     903,
+     1558.2,
+     966,
+     1920.0
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1005,
+     620,
+     1235,
+     850
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_tilt+8.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     384.5,
+     727.4,
+     637.5,
+     798.9
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     351.9,
+     933.4,
+     719.0,
+     1046.1
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1374.1,
+     1183.3,
+     1633.8,
+     1443.1
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_tilt-8.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2388,
+  "height": 1792,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     374.3,
+     920.8,
+     627.3,
+     992.3
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     403.3,
+     1111.3,
+     770.3,
+     1224.0
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1477.1,
+     1081.7,
+     1736.8,
+     1341.5
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_jpeg_q20.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     280.0,
+     695,
+     530.3,
+     732
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     280.0,
+     903,
+     641.8,
+     966
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1350,
+     1005,
+     1580,
+     1235
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_dark.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     280.0,
+     695,
+     530.3,
+     732
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     280.0,
+     903,
+     641.8,
+     966
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1350,
+     1005,
+     1580,
+     1235
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_glare.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 2200,
+  "height": 1500,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     280.0,
+     695,
+     530.3,
+     732
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     280.0,
+     903,
+     641.8,
+     966
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     1350,
+     1005,
+     1580,
+     1235
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_small800.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 800,
+  "height": 545,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     101.8,
+     252.7,
+     192.8,
+     266.2
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     101.8,
+     328.4,
+     233.4,
+     351.3
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     490.9,
+     365.5,
+     574.5,
+     449.1
+    ]
+   }
+  ]
+ },
+ {
+  "file": "pan_large4000.jpg",
+  "docType": "PAN",
+  "rotatedCw": 0,
+  "width": 4000,
+  "height": 2727,
+  "fields": [
+   {
+    "type": "DOB",
+    "rect": [
+     509.1,
+     1263.6,
+     964.2,
+     1330.9
+    ]
+   },
+   {
+    "type": "PAN",
+    "rect": [
+     509.1,
+     1641.8,
+     1166.9,
+     1756.4
+    ]
+   },
+   {
+    "type": "QR",
+    "rect": [
+     2454.5,
+     1827.3,
+     2872.7,
+     2245.5
+    ]
+   }
+  ]
+ }
+]
