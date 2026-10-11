@@ -35,6 +35,8 @@ fun FieldsSheet(
     docType: DocType,
     fields: List<FieldSummary>,
     qrHint: Boolean,
+    aadhaarAll: Boolean,
+    panAll: Boolean,
     onToggle: (FieldType, Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -62,7 +64,7 @@ fun FieldsSheet(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                for (f in fields) FieldRow(f, onToggle)
+                for (f in fields) FieldRow(f, f.type.label(aadhaarAll, panAll), onToggle)
             }
             if (qrHint) Hint(stringResource(R.string.fields_qr_hint))
 
@@ -74,7 +76,7 @@ fun FieldsSheet(
 }
 
 @Composable
-private fun FieldRow(f: FieldSummary, onToggle: (FieldType, Boolean) -> Unit) {
+private fun FieldRow(f: FieldSummary, label: Int, onToggle: (FieldType, Boolean) -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -83,7 +85,7 @@ private fun FieldRow(f: FieldSummary, onToggle: (FieldType, Boolean) -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
-            Text(stringResource(f.type.label()), style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(label), style = MaterialTheme.typography.bodyLarge)
             val details = buildList {
                 if (f.count > 1) add(pluralStringResource(R.plurals.fields_found_count, f.count, f.count))
                 if (f.needsCheck) add(stringResource(R.string.fields_needs_check))
@@ -109,11 +111,11 @@ private fun Hint(text: String) {
     ) { Text(text, Modifier.padding(16.dp), style = MaterialTheme.typography.bodyMedium) }
 }
 
-private fun FieldType.label(): Int = when (this) {
-    FieldType.AADHAAR_NUMBER -> R.string.field_aadhaar_number
+private fun FieldType.label(aadhaarAll: Boolean, panAll: Boolean): Int = when (this) {
+    FieldType.AADHAAR_NUMBER -> if (aadhaarAll) R.string.field_aadhaar_number_all else R.string.field_aadhaar_number
     FieldType.AADHAAR_VID -> R.string.field_vid
     FieldType.QR -> R.string.field_qr
-    FieldType.PAN -> R.string.field_pan
+    FieldType.PAN -> if (panAll) R.string.field_pan_all else R.string.field_pan
     FieldType.DOB -> R.string.field_dob
     FieldType.ADDRESS -> R.string.field_address
     FieldType.PHOTO -> R.string.field_photo

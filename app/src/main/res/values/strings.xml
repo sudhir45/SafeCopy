@@ -9,7 +9,6 @@
     <string name="home_help">Help</string>
     <string name="home_trust_badge">Offline · No internet permission</string>
     <string name="home_tip">Tip: In WhatsApp, share the ID photo to SafeCopy instead of the chat.</string>
-    <string name="coming_soon">Not available yet</string>
     <string name="home_loading_image">Opening image</string>
 
     <string name="error_too_large">This image is too large. Pick one under 25 MB.</string>
@@ -31,6 +30,10 @@
     <string name="editor_delete_mask">Delete mask</string>
     <string name="editor_draw_hint">Drag over anything you want hidden</string>
 
+    <plurals name="editor_masks_state">
+        <item quantity="one">%1$d area covered, %2$d switched off. Use Detected fields to change them.</item>
+        <item quantity="other">%1$d areas covered, %2$d switched off. Use Detected fields to change them.</item>
+    </plurals>
     <string name="editor_fields">Detected fields</string>
     <string name="editor_detecting">Finding sensitive details…</string>
 
@@ -47,6 +50,8 @@
         <item quantity="other">%d found</item>
     </plurals>
     <string name="field_aadhaar_number">Aadhaar number (first 8 digits)</string>
+    <string name="field_aadhaar_number_all">Aadhaar number (all 12 digits)</string>
+    <string name="field_pan_all">PAN (all 10 characters)</string>
     <string name="field_vid">Virtual ID (VID)</string>
     <string name="field_qr">QR code</string>
     <string name="field_pan">PAN (first 6 characters)</string>
@@ -104,4 +109,53 @@
     <string name="action_next">Next</string>
     <string name="action_discard">Discard</string>
     <string name="action_keep_editing">Keep editing</string>
+
+    <string name="onboarding_1_title">Make safe copies of your ID</string>
+    <string name="onboarding_1_body">Send a copy of your Aadhaar or PAN that is safer to give to a landlord, hotel, employer or shop.</string>
+    <string name="onboarding_2_title">Masks your Aadhaar number and QR, stamps who it\'s for</string>
+    <string name="onboarding_2_body">SafeCopy finds the sensitive parts and covers them with solid black, then writes who the copy is for and the date across the whole image.</string>
+    <string name="onboarding_3_title">Works fully offline</string>
+    <string name="onboarding_3_body">This app has no internet permission. Your photos never leave your phone, and the original is not kept.</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_get_started">Get started</string>
+    <string name="onboarding_page">Page %1$d of %2$d</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_masks">Masks</string>
+    <string name="settings_aadhaar_mode">Aadhaar number</string>
+    <string name="settings_aadhaar_first8">First 8 digits</string>
+    <string name="settings_aadhaar_all12">All 12 digits</string>
+    <string name="settings_pan_mode">PAN</string>
+    <string name="settings_pan_first6">First 6</string>
+    <string name="settings_pan_all">All 10</string>
+    <string name="settings_mask_qr">Cover QR codes by default</string>
+    <string name="settings_masks_note">Applies to the next photo you open. Date of birth and address are found but left visible unless you switch them on.</string>
+    <string name="settings_watermark">Watermark defaults</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_clear_explain">Removes your settings and recent recipients, and any photo or copy SafeCopy still holds.</string>
+    <string name="settings_clear">Clear all data</string>
+    <string name="settings_clear_confirm_title">Clear all data?</string>
+    <string name="settings_clear_confirm_body">Settings and recent recipients will be deleted. This can\'t be undone.</string>
+    <string name="settings_clear_confirm">Clear</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_no_internet">This app has no internet permission. It can\'t send your photos anywhere.</string>
+    <string name="settings_how_to_verify">How to check this</string>
+    <string name="settings_not_official">SafeCopy is not an official app and is not affiliated with UIDAI, the Income Tax Department or any government body.</string>
+
+    <string name="help_title">Help</string>
+    <string name="help_what_q">What does SafeCopy do?</string>
+    <string name="help_what_a">It makes a copy of an ID photo that is safer to share. Sensitive details such as the first 8 digits of your Aadhaar number and the QR code are covered with solid black boxes. The copy is stamped with who it is for and the date, and saved as a new image without hidden information like location or phone model. Your original photo is not kept.</string>
+    <string name="help_qr_q">Why cover the QR code?</string>
+    <string name="help_qr_a">The QR code on an Aadhaar card or letter holds your full details, including your photo, and many QR reader apps can show them. Covering the number but not the QR code leaves all of that readable.</string>
+    <string name="help_full_aadhaar_q">When do I need to share my full Aadhaar number?</string>
+    <string name="help_full_aadhaar_a">Some regulated services, such as certain bank or SIM card KYC checks, may ask for the full number. Follow the instructions of the organisation asking. Many others accept a masked Aadhaar that shows only the last 4 digits. If you do need the full number, open Detected fields in the editor and switch off the Aadhaar number. The watermark still shows who the copy is for.</string>
+    <string name="help_tamper_q">Is the watermark tamper-proof?</string>
+    <string name="help_tamper_a">No. Someone with photo-editing skills could try to remove it. The text is repeated across the whole image and over the black boxes to make that harder. Its job is to discourage misuse and to show who a leaked copy was given to.</string>
+    <string name="help_offline_q">How can I check that SafeCopy is offline?</string>
+    <string name="help_offline_a">SafeCopy does not ask for the internet permission, so Android doesn\'t let it use the network. On Google Play, open SafeCopy\'s page and look at About this app, then App permissions: there is no network access entry. You can also turn on airplane mode, and SafeCopy works the same. Technical users can inspect the APK with Android Studio\'s APK Analyzer.</string>
+    <string name="help_whatsapp_q">How do I use it from WhatsApp?</string>
+    <string name="help_whatsapp_a">When someone asks for your ID, open the photo, tap Share and choose SafeCopy instead of sending it to the chat. Make the safe copy, then tap Share and pick WhatsApp to send it.</string>
+    <string name="help_valid_q">Does SafeCopy make a document valid or invalid?</string>
+    <string name="help_valid_a">No. It doesn\'t change whether a document is accepted, and an organisation may still ask for the full, unmasked document. SafeCopy is not affiliated with UIDAI or the Income Tax Department.</string>
 </resources>

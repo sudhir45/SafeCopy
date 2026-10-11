@@ -29,6 +29,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
@@ -72,6 +73,7 @@ fun EditorCanvas(
     selectedId: String?,
     drawMode: Boolean,
     contentDescription: String,
+    stateDescription: String,
     onTap: (Point) -> Unit,
     onCreate: (Rect) -> Unit,
     onChange: (id: String, Rect) -> Unit,
@@ -106,7 +108,10 @@ fun EditorCanvas(
     Canvas(
         modifier
             .onSizeChanged { viewSize = it }
-            .semantics { this.contentDescription = contentDescription }
+            .semantics {
+                this.contentDescription = contentDescription
+                this.stateDescription = stateDescription
+            }
             .pointerInput(bitmap) {
                 awaitEachGesture {
                     val down = awaitFirstDown()

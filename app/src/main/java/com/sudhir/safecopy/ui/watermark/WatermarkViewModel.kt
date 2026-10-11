@@ -46,9 +46,19 @@ class WatermarkViewModel(private val container: AppContainer) : ViewModel() {
         combine(container.settings.recentRecipients, _config) { recents, c -> RecentRecipients.suggest(recents, c.recipient) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    /** Set once the user changes anything, so late-loading defaults never overwrite their input. */
+    private var touched = false
+
     init {
         val source = session.image.value
         if (source != null) startPreview(source, session.masks)
+        if (session.watermark == null) {
+            // Spec 11 defaults (template, style, capitals) from Settings.
+            viewModelScope.launch {
+                val defaults = container.settings.current().newWatermark(LocalDate.now())
+                if (!touched) _config.value = defaults
+            }
+        }
     }
 
     /**
@@ -79,18 +89,21 @@ class WatermarkViewModel(private val container: AppContainer) : ViewModel() {
         }
     }
 
-    fun setTemplate(t: WatermarkTemplate) = _config.value.let { _config.value = it.copy(template = t) }
-    fun setRecipient(r: String) = _config.value.let { _config.value = it.copy(recipient = r.take(MAX_FIELD)) }
-    fun setPurpose(p: String) = _config.value.let { _config.value = it.copy(purpose = p.take(MAX_FIELD)) }
-    fun setDate(d: LocalDate) = _config.value.let { _config.value = it.copy(date = d) }
-    fun setUppercase(u: Boolean) = _config.value.let { _config.value = it.copy(uppercase = u) }
+    fun setTemplate(t: WatermarkTemplate) = edit { it.copy(template = t) }
+    fun setRecipient(r: String) = edit { it.copy(recipient = r.take(MAX_FIELD)) }
+    fun setPurpose(p: String) = edit { it.copy(purpose = p.take(MAX_FIELD)) }
+    fun setDate(d: LocalDate) = edit { it.copy(date = d) }
+    fun setUppercase(u: Boolean) = edit { it.copy(uppercase = u) }
     fun setOpacity(o: Float) = updateStyle { it.copy(opacity = o) }
     fun setAngle(a: Float) = updateStyle { it.copy(angleDegrees = a) }
     fun setSize(s: WatermarkSize) = updateStyle { it.copy(size = s) }
     fun setColour(c: WatermarkColour) = updateStyle { it.copy(colour = c) }
 
-    private fun updateStyle(f: (WatermarkStyle) -> WatermarkStyle) {
-        _config.value = _config.value.let { it.copy(style = f(it.style)) }
+    private fun updateStyle(f: (WatermarkStyle) -> WatermarkStyle) = edit { it.copy(style = f(it.style)) }
+
+    private fun edit(f: (WatermarkConfig) -> WatermarkConfig) {
+        touched = true
+        _config.value = f(_config.value)
     }
 
     /** Hands the config to the export step. Only called when [WatermarkConfig.isComplete]. */

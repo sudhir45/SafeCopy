@@ -6,8 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.sudhir.safecopy.AppContainer
 import com.sudhir.safecopy.core.image.ImageLoader
 import com.sudhir.safecopy.core.log.SafeLog
+import com.sudhir.safecopy.domain.detect.AadhaarMaskMode
 import com.sudhir.safecopy.domain.detect.DetectionResult
 import com.sudhir.safecopy.domain.detect.DocType
+import com.sudhir.safecopy.domain.detect.PanMaskMode
 import com.sudhir.safecopy.domain.mask.MaskGeometry
 import com.sudhir.safecopy.domain.mask.UndoStack
 import com.sudhir.safecopy.domain.model.Confidence
@@ -47,6 +49,9 @@ data class EditorUiState(
     val fields: List<FieldSummary> = emptyList(),
     val qrHint: Boolean = false,
     val showFieldsSheet: Boolean = false,
+    /** Mask modes from Settings, so the sheet can say "first 8 digits" or "all 12 digits". */
+    val aadhaarAll: Boolean = false,
+    val panAll: Boolean = false,
 )
 
 class EditorViewModel(private val container: AppContainer) : ViewModel() {
@@ -72,7 +77,9 @@ class EditorViewModel(private val container: AppContainer) : ViewModel() {
         local.update { it.copy(detecting = true) }
         viewModelScope.launch {
             val result = try {
-                val oriented = container.detection.detect(image)
+                val options = container.settings.current().detectionOptions
+                local.update { it.copy(aadhaarAll = options.aadhaarMaskMode == AadhaarMaskMode.ALL_12, panAll = options.panMaskMode == PanMaskMode.ALL) }
+                val oriented = container.detection.detect(image, options)
                 if (oriented.rotationCw != 0) session.replace(oriented.bitmap)
                 oriented.result
             } catch (e: CancellationException) {

@@ -34,14 +34,20 @@ object ImageMath {
         else -> Orientation(0, flipHorizontal = false) // NORMAL / UNDEFINED
     }
 
+    /** Spec 5.3 / M5 "huge image": never decode more than this many pixels (~64 MB as ARGB). */
+    const val MAX_DECODE_PIXELS = 16_000_000L
+
     /**
-     * Largest power-of-two `inSampleSize` that keeps the decoded long edge at or above
-     * [maxEdge], so the exact downscale afterwards never has to upscale.
+     * Power-of-two `inSampleSize`: the largest that keeps the decoded long edge at or above
+     * [maxEdge] (so the exact downscale afterwards never upscales), raised further if the
+     * decode would still exceed [maxPixels]. A 6000×4000 photo decodes at 3000×2000, not at
+     * full size first.
      */
-    fun inSampleSize(width: Int, height: Int, maxEdge: Int = MAX_EDGE): Int {
+    fun inSampleSize(width: Int, height: Int, maxEdge: Int = MAX_EDGE, maxPixels: Long = MAX_DECODE_PIXELS): Int {
         val longEdge = max(width, height)
         var sample = 1
         while (longEdge / (sample * 2) >= maxEdge) sample *= 2
+        while ((width.toLong() / sample) * (height.toLong() / sample) > maxPixels) sample *= 2
         return sample
     }
 

@@ -37,12 +37,21 @@ class ImageMathTest {
         assertThat(ImageMath.inSampleSize(2000, 1500)).isEqualTo(1)
         assertThat(ImageMath.inSampleSize(3000, 2000)).isEqualTo(1)
         assertThat(ImageMath.inSampleSize(6000, 4000)).isEqualTo(2)
-        assertThat(ImageMath.inSampleSize(5999, 4000)).isEqualTo(1)
+        assertThat(ImageMath.inSampleSize(4000, 3000)).isEqualTo(1) // 12 MP: under the pixel cap
         assertThat(ImageMath.inSampleSize(4000, 12000)).isEqualTo(4)
         for (edge in listOf(3001, 4500, 8000, 16000, 40000)) {
             val s = ImageMath.inSampleSize(edge, 100)
             assertThat(edge / s).isAtLeast(ImageMath.MAX_EDGE)
         }
+    }
+
+    @Test
+    fun pixelCapRaisesSampleForBigButNarrowEdgePhotos() {
+        // 5999×4000 = 24 MP: the edge rule alone would decode it at full size (96 MB).
+        assertThat(ImageMath.inSampleSize(5999, 4000)).isEqualTo(2)
+        // Decompression-bomb shape: 20000×20000 must not decode at 10000×10000.
+        val s = ImageMath.inSampleSize(20000, 20000)
+        assertThat((20000L / s) * (20000L / s)).isAtMost(ImageMath.MAX_DECODE_PIXELS)
     }
 
     @Test

@@ -58,6 +58,8 @@ fun HomeRoute(
     onOpenEditor: () -> Unit,
     autoPick: Boolean = false,
     onAutoPickHandled: () -> Unit = {},
+    onSettings: () -> Unit = {},
+    onHelp: () -> Unit = {},
 ) {
     val container = LocalContext.current.appContainer
     val vm: HomeViewModel = viewModel(
@@ -105,10 +107,12 @@ fun HomeRoute(
                 }
             }
         },
+        onSettings = onSettings,
+        onHelp = onHelp,
     )
 }
 
-/** Home (spec 5.2). Settings and Help land in M5. */
+/** Home (spec 5.2). */
 @Composable
 fun HomeScreen(
     importing: Boolean = false,
@@ -116,14 +120,10 @@ fun HomeScreen(
     onErrorShown: () -> Unit = {},
     onChoosePhoto: () -> Unit = {},
     onTakePhoto: () -> Unit = {},
-    onSettings: (() -> Unit)? = null,
-    onHelp: (() -> Unit)? = null,
+    onSettings: () -> Unit = {},
+    onHelp: () -> Unit = {},
 ) {
     val snackbar = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
-    val comingSoon = stringResource(R.string.coming_soon)
-    fun orComingSoon(action: (() -> Unit)?): () -> Unit =
-        action ?: { scope.launch { snackbar.showSnackbar(comingSoon) } }
 
     val errorText = error?.let { stringResource(it.messageRes()) }
     LaunchedEffect(error) {
@@ -163,10 +163,10 @@ fun HomeScreen(
                 ) { Text(stringResource(R.string.home_take_photo), style = MaterialTheme.typography.titleMedium) }
 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    TextButton(onClick = orComingSoon(onSettings), modifier = Modifier.heightIn(min = 48.dp)) {
+                    TextButton(onClick = onSettings, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(stringResource(R.string.home_settings))
                     }
-                    TextButton(onClick = orComingSoon(onHelp), modifier = Modifier.heightIn(min = 48.dp)) {
+                    TextButton(onClick = onHelp, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(stringResource(R.string.home_help))
                     }
                 }

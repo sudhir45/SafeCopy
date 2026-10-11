@@ -43,6 +43,11 @@ class TempFiles(private val context: Context) {
         cameraDir.deleteChildren { true }
     }
 
+    /** "Clear all data": everything in the cache, exports included. */
+    suspend fun clearAll() = withContext(Dispatchers.IO) {
+        context.cacheDir.deleteChildren { true }
+    }
+
     /**
      * Stale-file sweep on app start (spec 2.4, 9).
      *

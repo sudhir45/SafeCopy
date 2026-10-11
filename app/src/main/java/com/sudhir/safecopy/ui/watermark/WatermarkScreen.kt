@@ -253,7 +253,7 @@ fun WatermarkRoute(onBack: () -> Unit, onNext: () -> Unit, onExpired: () -> Unit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TemplatePicker(selected: WatermarkTemplate, onSelect: (WatermarkTemplate) -> Unit) {
+internal fun TemplatePicker(selected: WatermarkTemplate, onSelect: (WatermarkTemplate) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it }) {
         OutlinedTextField(
@@ -281,7 +281,7 @@ private fun TemplatePicker(selected: WatermarkTemplate, onSelect: (WatermarkTemp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AdvancedControls(
+internal fun AdvancedControls(
     style: WatermarkStyle,
     uppercase: Boolean,
     onOpacity: (Float) -> Unit,
@@ -348,7 +348,7 @@ private fun AdvancedControls(
 }
 
 @Composable
-private fun <T> Segmented(options: List<T>, selected: T, label: (T) -> Int, onSelect: (T) -> Unit) {
+internal fun <T> Segmented(options: List<T>, selected: T, label: (T) -> Int, onSelect: (T) -> Unit) {
     SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
         options.forEachIndexed { i, option ->
             SegmentedButton(
@@ -361,7 +361,7 @@ private fun <T> Segmented(options: List<T>, selected: T, label: (T) -> Int, onSe
 }
 
 @StringRes
-private fun WatermarkTemplate.label(): Int = when (this) {
+internal fun WatermarkTemplate.label(): Int = when (this) {
     WatermarkTemplate.KYC -> R.string.template_kyc
     WatermarkTemplate.SPECIFIC_PURPOSE -> R.string.template_specific_purpose
     WatermarkTemplate.RENTAL -> R.string.template_rental
