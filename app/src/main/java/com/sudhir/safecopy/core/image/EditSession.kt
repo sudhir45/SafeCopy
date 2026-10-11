@@ -1,6 +1,7 @@
 package com.sudhir.safecopy.core.image
 
 import android.graphics.Bitmap
+import com.sudhir.safecopy.domain.model.MaskRect
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,8 +17,12 @@ class EditSession {
     private val _image = MutableStateFlow<Bitmap?>(null)
     val image: StateFlow<Bitmap?> = _image.asStateFlow()
 
+    /** Masks as of the editor's last "Next"; read by the export step. */
+    var masks: List<MaskRect> = emptyList()
+
     fun start(bitmap: Bitmap) {
         _image.value = bitmap
+        masks = emptyList()
     }
 
     fun replace(bitmap: Bitmap) {
@@ -27,5 +32,6 @@ class EditSession {
     fun clear() {
         // Not recycled here: Compose may still be drawing it. Dropping the reference is enough.
         _image.value = null
+        masks = emptyList()
     }
 }

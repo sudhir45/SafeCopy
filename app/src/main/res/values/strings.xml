@@ -25,6 +25,27 @@
     <string name="editor_discard_title">Discard this copy?</string>
     <string name="editor_discard_message">Your changes will be lost and the photo removed from SafeCopy.</string>
 
+    <string name="editor_add_mask">Add mask</string>
+    <string name="editor_undo">Undo</string>
+    <string name="editor_redo">Redo</string>
+    <string name="editor_delete_mask">Delete mask</string>
+    <string name="editor_draw_hint">Drag over anything you want hidden</string>
+
+    <string name="export_title">Preview</string>
+    <string name="export_preview_description">Safe copy that will be shared</string>
+    <string name="export_file_info">%1$d × %2$d px · %3$s · JPEG, no metadata</string>
+    <string name="export_share">Share</string>
+    <string name="export_save">Save to device</string>
+    <string name="export_share_title">Share safe copy</string>
+    <string name="export_no_share_target">No app on this phone can receive images.</string>
+    <string name="export_save_failed">Couldn\'t save the file. Try another location.</string>
+    <string name="export_render_failed">Couldn\'t create the copy. Go back and try again.</string>
+
+    <string name="done_title">Safe copy ready</string>
+    <string name="done_message">The original photo has been removed from SafeCopy.</string>
+    <string name="done_another">Make another copy</string>
+    <string name="done_home">Back to home</string>
+
     <string name="action_back">Back</string>
     <string name="action_next">Next</string>
     <string name="action_discard">Discard</string>

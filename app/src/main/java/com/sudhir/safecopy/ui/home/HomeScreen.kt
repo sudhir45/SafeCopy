@@ -54,7 +54,11 @@ import kotlinx.coroutines.launch
 
 /** Home with its ViewModel, photo picker and camera launchers wired up. */
 @Composable
-fun HomeRoute(onOpenEditor: () -> Unit) {
+fun HomeRoute(
+    onOpenEditor: () -> Unit,
+    autoPick: Boolean = false,
+    onAutoPickHandled: () -> Unit = {},
+) {
     val container = LocalContext.current.appContainer
     val vm: HomeViewModel = viewModel(
         factory = viewModelFactory { initializer { HomeViewModel(createSavedStateHandle(), container) } },
@@ -67,6 +71,14 @@ fun HomeRoute(onOpenEditor: () -> Unit) {
     }
     val takePicture = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { ok ->
         vm.onCaptureResult(ok)
+    }
+
+    // "Make another copy" on the Done screen goes straight to the photo picker.
+    LaunchedEffect(autoPick) {
+        if (autoPick) {
+            onAutoPickHandled()
+            pickImage.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     LaunchedEffect(state.openEditor) {
