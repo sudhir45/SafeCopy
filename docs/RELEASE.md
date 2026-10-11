@@ -1,49 +1,37 @@
 # Releasing SafeCopy
 
-## 1. Create your upload key (once)
+SafeCopy is released as a signed APK on GitHub Releases. Google Play isn't used (it needs a paid developer account and a closed test); the Play notes at the end are kept in case that changes.
 
-Google Play signs the app for users; you sign uploads with your own **upload key**. Create it outside the repo and back it up somewhere safe (password manager, encrypted drive). If you lose it you'll need to ask Google to reset it.
+## Signing key
 
-```bash
-mkdir -p ~/.android-keys
-keytool -genkeypair -v \
-  -keystore ~/.android-keys/safecopy-upload.jks \
-  -alias safecopy-upload -keyalg RSA -keysize 4096 -validity 10000
-```
+The release key lives outside the repo:
 
-Then add to `~/.gradle/gradle.properties` (not the project's `gradle.properties`, which is committed):
+- Keystore: `~/.android-keys/safecopy-upload.jks` (alias `safecopy`)
+- Passwords and paths: `~/.gradle/gradle.properties` (`SAFECOPY_KEYSTORE`, `SAFECOPY_KEYSTORE_PASSWORD`, `SAFECOPY_KEY_ALIAS`, `SAFECOPY_KEY_PASSWORD`)
+- Certificate SHA-256: `63:F9:2C:DE:62:E2:20:83:19:25:B7:FC:0E:AA:39:27:4B:3D:81:32:80:C5:FB:A8:93:D3:83:53:FE:4A:B6:5A`
 
-```properties
-SAFECOPY_KEYSTORE=~/.android-keys/safecopy-upload.jks
-SAFECOPY_KEYSTORE_PASSWORD=...
-SAFECOPY_KEY_ALIAS=safecopy-upload
-SAFECOPY_KEY_PASSWORD=...
-```
+**Back up the `.jks` file and the four `SAFECOPY_*` lines together**, in a password manager or encrypted drive. Every future update must be signed with this exact key, or Android will refuse to install it over the old version. If it's lost, users have to uninstall and reinstall.
 
 The same four names also work as environment variables (for CI). Without them, release builds come out unsigned.
 
-## 2. Build
+## Making a release
 
-```bash
-mise exec -- ./gradlew clean testDebugUnitTest lint bundleRelease assembleRelease
-scripts/check-permissions.sh app/build/outputs/apk/release/app-release.apk
-```
+1. Bump `versionCode` (+1) and `versionName` in `app/build.gradle.kts`.
+2. Check everything:
+   ```bash
+   mise exec -- ./gradlew clean testDebugUnitTest lint assembleRelease
+   scripts/check-permissions.sh app/build/outputs/apk/release/app-release.apk
+   ~/Android/Sdk/build-tools/37.0.0/apksigner verify --print-certs app/build/outputs/apk/release/app-release.apk
+   ```
+   With an emulator or phone attached, also run `./gradlew connectedDebugAndroidTest`, and install the release APK once to smoke-test it. R8 once broke ML Kit only in release builds.
+3. Copy the APK to `SafeCopy-<version>.apk`, then publish:
+   ```bash
+   sha256sum SafeCopy-<version>.apk > SafeCopy-<version>.apk.sha256
+   gh release create v<version> SafeCopy-<version>.apk SafeCopy-<version>.apk.sha256 --title "SafeCopy <version>" --notes "..."
+   ```
 
-- `bundleRelease` → `app/build/outputs/bundle/release/app-release.aab`, the file to upload to Play. Play splits it per CPU type, so users download about 20 MB, not the 66 MB universal APK.
-- `check<Variant>Permissions` runs automatically before every `assemble*` and `bundle*` and fails the build if a network, camera or storage permission appears.
-- Bump `versionCode` and `versionName` in `app/build.gradle.kts` for each upload.
+## Google Play (not used, kept for reference)
 
-## 3. Before each release
-
-1. All JVM tests green: `./gradlew testDebugUnitTest`.
-2. All instrumented tests green on an emulator or phone: `./gradlew connectedDebugAndroidTest` (includes `FixtureDetectionTest`).
-3. Manual test matrix (spec 15.5), on API 26, the latest API, and a real mid/low-end phone: gallery, camera, share-in from WhatsApp, rotate, export JPEG, save to device, dark mode, font scale 1.3, TalkBack labels.
-4. Release APK permission check passes (above).
-
-## 4. Play Console
-
-- **New personal developer accounts** must run a closed test before production access (it was 12 testers for 14 continuous days at the time of the spec; check the current rule in Play Console).
-- **Data safety form**: "No data collected", "No data shared". This is true only while the privacy invariants in spec section 2 hold.
-- **Privacy policy**: host `docs/PRIVACY_POLICY.md` somewhere public (e.g. GitHub Pages) and link it.
-- **Store listing**: text in `docs/STORE_LISTING.md`. Screenshots in `docs/store-screenshots/` are made from the synthetic fixtures only. No government logos and no wording that implies UIDAI affiliation.
-- **Target API**: `targetSdk` must meet Play's current requirement (it's 37 now).
+- Upload `bundleRelease` output (`app-release.aab`); Play splits it per CPU type, so users download about 20 MB instead of the 66 MB universal APK.
+- New personal developer accounts must run a closed test (it was 12 testers for 14 days) before production.
+- Data safety form: "No data collected", "No data shared". Text for the listing is in `docs/STORE_LISTING.md`.

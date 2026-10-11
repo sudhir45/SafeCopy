@@ -27,4 +27,4 @@ Both are stored only in SafeCopy's private storage on your phone. They are exclu
 
 ## Contact
 
-Questions about this policy: CONTACT_EMAIL (replace before publishing)
+Questions about this policy: open an issue at https://github.com/sudhir45/SafeCopy/issues
