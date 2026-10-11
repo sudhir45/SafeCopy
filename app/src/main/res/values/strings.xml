@@ -41,6 +41,36 @@
     <string name="export_save_failed">Couldn\'t save the file. Try another location.</string>
     <string name="export_render_failed">Couldn\'t create the copy. Go back and try again.</string>
 
+    <string name="watermark_title">Watermark</string>
+    <string name="watermark_preview_description">Preview of the copy with masks and watermark</string>
+    <string name="watermark_preview_hint">Enter who this copy is for to see the watermark.</string>
+    <string name="watermark_template">Template</string>
+    <string name="watermark_recipient">Recipient</string>
+    <string name="watermark_recipient_help">Required. Who you are giving this copy to.</string>
+    <string name="watermark_purpose">Purpose (optional)</string>
+    <string name="watermark_date">Date</string>
+    <string name="watermark_change_date">Change date</string>
+    <string name="watermark_show_advanced">Show advanced options</string>
+    <string name="watermark_hide_advanced">Hide advanced options</string>
+    <string name="watermark_opacity">Opacity: %1$d%%</string>
+    <string name="watermark_angle">Angle: %1$d°</string>
+    <string name="watermark_size">Text size</string>
+    <string name="watermark_size_small">Small</string>
+    <string name="watermark_size_medium">Medium</string>
+    <string name="watermark_size_large">Large</string>
+    <string name="watermark_colour">Colour</string>
+    <string name="watermark_colour_dark">Dark</string>
+    <string name="watermark_colour_light">Light</string>
+    <string name="watermark_colour_red">Red</string>
+    <string name="watermark_uppercase">Capital letters</string>
+
+    <string name="template_kyc">KYC</string>
+    <string name="template_specific_purpose">Specific purpose</string>
+    <string name="template_rental">Rental</string>
+    <string name="template_hotel">Hotel</string>
+    <string name="template_job">Job</string>
+    <string name="template_not_valid_elsewhere">Not valid elsewhere</string>
+
     <string name="done_title">Safe copy ready</string>
     <string name="done_message">The original photo has been removed from SafeCopy.</string>
     <string name="done_another">Make another copy</string>

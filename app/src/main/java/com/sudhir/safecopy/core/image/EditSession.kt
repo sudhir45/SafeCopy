@@ -2,6 +2,7 @@ package com.sudhir.safecopy.core.image
 
 import android.graphics.Bitmap
 import com.sudhir.safecopy.domain.model.MaskRect
+import com.sudhir.safecopy.domain.model.WatermarkConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,9 +21,13 @@ class EditSession {
     /** Masks as of the editor's last "Next"; read by the export step. */
     var masks: List<MaskRect> = emptyList()
 
+    /** Watermark as of the Watermark screen's last "Next"; read by the export step. */
+    var watermark: WatermarkConfig? = null
+
     fun start(bitmap: Bitmap) {
         _image.value = bitmap
         masks = emptyList()
+        watermark = null
     }
 
     fun replace(bitmap: Bitmap) {
@@ -33,5 +38,6 @@ class EditSession {
         // Not recycled here: Compose may still be drawing it. Dropping the reference is enough.
         _image.value = null
         masks = emptyList()
+        watermark = null
     }
 }

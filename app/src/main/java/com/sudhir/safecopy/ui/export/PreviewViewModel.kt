@@ -8,6 +8,7 @@ import com.sudhir.safecopy.AppContainer
 import com.sudhir.safecopy.core.log.SafeLog
 import com.sudhir.safecopy.render.Composer
 import com.sudhir.safecopy.render.ExportedFile
+import com.sudhir.safecopy.render.WatermarkRender
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -44,9 +45,10 @@ class PreviewViewModel(private val container: AppContainer) : ViewModel() {
     private fun render() {
         val source = session.image.value ?: return
         val masks = session.masks
+        val watermark = session.watermark?.let { WatermarkRender(it.text(), it.style) }
         viewModelScope.launch {
             try {
-                val output = withContext(Dispatchers.Default) { Composer.compose(source, masks) }
+                val output = withContext(Dispatchers.Default) { Composer.compose(source, masks, watermark) }
                 val export = container.exporter.writeJpeg(output)
                 _state.update { it.copy(rendering = false, output = output, export = export) }
             } catch (e: Throwable) {
@@ -94,6 +96,8 @@ class PreviewViewModel(private val container: AppContainer) : ViewModel() {
 
     /** Spec 9: after share/save the original is dropped from memory and temp storage. */
     private fun finish() {
+        // Remember who this copy went to, for the recipient suggestions (spec 10: last 10).
+        session.watermark?.recipient?.let { r -> container.appScope.launch { container.settings.addRecentRecipient(r) } }
         session.clear()
         container.appScope.launch { container.tempFiles.clearOriginals() }
         _state.update { it.copy(saving = false, done = true) }

@@ -6,6 +6,7 @@ import android.net.Uri
 import com.sudhir.safecopy.core.files.TempFiles
 import com.sudhir.safecopy.core.image.EditSession
 import com.sudhir.safecopy.core.image.ImageLoader
+import com.sudhir.safecopy.data.settings.SettingsRepository
 import com.sudhir.safecopy.render.Exporter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ class AppContainer(context: Context) {
     val imageLoader = ImageLoader(context.contentResolver)
     val editSession = EditSession()
     val exporter = Exporter(context, tempFiles)
+    val settings = SettingsRepository(context)
 
     /** Image URI received through the share sheet, waiting to be imported by Home. */
     val incomingShare = MutableStateFlow<Uri?>(null)

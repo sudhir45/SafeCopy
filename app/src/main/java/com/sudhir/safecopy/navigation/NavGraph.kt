@@ -14,11 +14,12 @@ import com.sudhir.safecopy.ui.done.DoneScreen
 import com.sudhir.safecopy.ui.editor.EditorRoute
 import com.sudhir.safecopy.ui.export.PreviewRoute
 import com.sudhir.safecopy.ui.home.HomeRoute
+import com.sudhir.safecopy.ui.watermark.WatermarkRoute
 
 object Routes {
     const val HOME = "home"
     const val EDITOR = "editor"
-    // M3 inserts the Watermark screen between EDITOR and PREVIEW (spec 5.1).
+    const val WATERMARK = "watermark"
     const val PREVIEW = "preview"
     const val DONE = "done"
 }
@@ -49,8 +50,15 @@ fun SafeCopyNavGraph() {
         }
         composable(Routes.EDITOR) {
             EditorRoute(
-                onNext = { navController.navigate(Routes.PREVIEW) { launchSingleTop = true } },
+                onNext = { navController.navigate(Routes.WATERMARK) { launchSingleTop = true } },
                 onExit = { navController.backToHome() },
+            )
+        }
+        composable(Routes.WATERMARK) {
+            WatermarkRoute(
+                onBack = { navController.popBackStack() },
+                onNext = { navController.navigate(Routes.PREVIEW) { launchSingleTop = true } },
+                onExpired = { navController.backToHome() },
             )
         }
         composable(Routes.PREVIEW) {
