@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Placeholder icon: an ID card with a masked bar. Final icon lands in M6. -->
+<!-- SafeCopy icon: an ID card with its number masked and a check badge. Everything stays
+     inside the 66 dp adaptive-icon safe zone (radius 33 around the centre). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
@@ -8,17 +9,31 @@
     <!-- card -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M34,38h40a4,4 0,0 1,4 4v24a4,4 0,0 1,-4 4h-40a4,4 0,0 1,-4 -4v-24a4,4 0,0 1,4 -4z" />
-    <!-- mask bar -->
-    <path
-        android:fillColor="#1F4E46"
-        android:pathData="M38,56h22v6h-22z" />
-    <!-- visible digits stub -->
+        android:pathData="M34,40 h40 a4,4 0 0 1 4,4 v22 a4,4 0 0 1 -4,4 h-40 a4,4 0 0 1 -4,-4 v-22 a4,4 0 0 1 4,-4 z" />
+    <!-- photo and name lines -->
     <path
         android:fillColor="#7FA8A0"
-        android:pathData="M63,56h8v6h-8z" />
-    <!-- photo block -->
+        android:pathData="M35,45 h10 v12 h-10 z" />
+    <path
+        android:fillColor="#9FB8B3"
+        android:pathData="M48,46 h20 v3 h-20 z M48,52 h13 v3 h-13 z" />
+    <!-- masked number, last digits visible -->
+    <path
+        android:fillColor="#111111"
+        android:pathData="M35,61 h22 v5 h-22 z" />
     <path
         android:fillColor="#7FA8A0"
-        android:pathData="M38,44h10v8h-10z" />
+        android:pathData="M59,61 h6 v5 h-6 z" />
+    <!-- check badge -->
+    <path
+        android:fillColor="#FFB300"
+        android:strokeColor="#1F4E46"
+        android:strokeWidth="2"
+        android:pathData="M72,56 a10,10 0 1 1 0,20 a10,10 0 1 1 0,-20 z" />
+    <path
+        android:strokeColor="#1F4E46"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M67.5,66 l3.2,3.2 l6,-6.4" />
 </vector>

@@ -92,7 +92,7 @@ class EditorViewModel(private val container: AppContainer) : ViewModel() {
                 SafeLog.e("detection out of memory", e)
                 null
             }
-            val r = result ?: DetectionResult(DocType.UNKNOWN, emptyList(), emptyList(), qrHint = false, textAmount = 0)
+            val r = result ?: DetectionResult(DocType.UNKNOWN, emptyList(), emptyList(), qrHint = false)
             session.detection = r
             // Detected masks are the starting point, not an undo step: Undo can't wipe them out.
             history = UndoStack(r.masks + history.current)
@@ -177,7 +177,8 @@ class EditorViewModel(private val container: AppContainer) : ViewModel() {
             try {
                 val rotated = withContext(Dispatchers.Default) { ImageLoader.rotateClockwise(src) }
                 // Masks (detected and manual) turn with the image, in every undo/redo snapshot
-                // too. Detection isn't re-run: it already tried all four orientations.
+                // too. Detection isn't re-run: it already turned the card upright from the
+                // text's own angle, and the mask rotation is exact.
                 history.mapAll { masks -> masks.map { it.copy(rect = MaskGeometry.rotateClockwise(it.rect, src.height)) } }
                 session.replace(rotated)
                 quarterTurns = (quarterTurns + 1) % 4

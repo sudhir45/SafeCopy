@@ -30,33 +30,12 @@ data class DetectedField(
 /** What the editor gets back from detection. */
 data class DetectionResult(
     val docType: DocType,
-    /** Raw detections (used by tests and for scoring). */
+    /** Raw (unpadded) detections. */
     val fields: List<DetectedField>,
     /** Padded, merged masks to put on the image. */
     val masks: List<MaskRect>,
     /** Spec 6.10: Aadhaar but no QR found, so suggest drawing one by hand. */
     val qrHint: Boolean,
-    /** Characters the OCR read, a rough measure of how readable this orientation is. */
-    val textAmount: Int,
 ) {
     val nothingFound: Boolean get() = fields.isEmpty()
-
-    /** A trustworthy ID number was found: this orientation is right. */
-    val hasStrongMatch: Boolean
-        get() = fields.any { it.confidence == Confidence.HIGH && it.type in STRONG_TYPES }
-
-    /**
-     * Used to pick the best of several orientations: checksum-valid ID numbers dominate, then
-     * other confident text fields, then a recognised document type, then the amount of text.
-     * QR codes don't count: they're found at any rotation, so they say nothing about it.
-     */
-    val score: Int
-        get() = fields.count { it.confidence == Confidence.HIGH && it.type in STRONG_TYPES } * 1000 +
-            fields.count { it.confidence == Confidence.HIGH && it.type !in STRONG_TYPES && it.type != FieldType.QR } * 100 +
-            (if (docType != DocType.UNKNOWN) 500 else 0) +
-            textAmount.coerceAtMost(99)
-
-    private companion object {
-        val STRONG_TYPES = setOf(FieldType.AADHAAR_NUMBER, FieldType.AADHAAR_VID, FieldType.PAN)
-    }
 }

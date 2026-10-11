@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 private data class Page(@DrawableRes val icon: Int, @StringRes val title: Int, @StringRes val body: Int)
 
 private val PAGES = listOf(
-    Page(R.drawable.ic_launcher_foreground, R.string.onboarding_1_title, R.string.onboarding_1_body),
+    Page(R.drawable.ic_launcher_monochrome, R.string.onboarding_1_title, R.string.onboarding_1_body),
     Page(R.drawable.ic_add_box, R.string.onboarding_2_title, R.string.onboarding_2_body),
     Page(R.drawable.ic_check_circle, R.string.onboarding_3_title, R.string.onboarding_3_body),
 )

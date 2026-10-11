@@ -19,6 +19,23 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Spec 14.4: the release key is read from ~/.gradle/gradle.properties or environment
+    // variables, never from this repo. Without them, release builds come out unsigned.
+    val keystorePath = providers.gradleProperty("SAFECOPY_KEYSTORE").orElse(providers.environmentVariable("SAFECOPY_KEYSTORE")).orNull
+    signingConfigs {
+        if (keystorePath != null) {
+            create("release") {
+                storeFile = file(keystorePath)
+                storePassword = providers.gradleProperty("SAFECOPY_KEYSTORE_PASSWORD")
+                    .orElse(providers.environmentVariable("SAFECOPY_KEYSTORE_PASSWORD")).get()
+                keyAlias = providers.gradleProperty("SAFECOPY_KEY_ALIAS")
+                    .orElse(providers.environmentVariable("SAFECOPY_KEY_ALIAS")).get()
+                keyPassword = providers.gradleProperty("SAFECOPY_KEY_PASSWORD")
+                    .orElse(providers.environmentVariable("SAFECOPY_KEY_PASSWORD")).get()
+            }
+        }
+    }
+
     buildTypes {
         debug {
             val secure = providers.gradleProperty("safecopy.debugSecure").orNull.toBoolean()
@@ -26,8 +43,10 @@ android {
         }
         release {
             buildConfigField("boolean", "FORCE_SECURE", "true")
-            isMinifyEnabled = false // R8 + log stripping land in M6
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfigs.findByName("release")?.let { signingConfig = it }
         }
     }
 
@@ -134,6 +153,6 @@ androidComponents {
             mergedManifest.set(variant.artifacts.get(SingleArtifact.MERGED_MANIFEST))
             report.set(layout.buildDirectory.file("reports/permissions/${variant.name}.txt"))
         }
-        tasks.matching { it.name == "assemble$cap" }.configureEach { dependsOn(guard) }
+        tasks.matching { it.name == "assemble$cap" || it.name == "bundle$cap" }.configureEach { dependsOn(guard) }
     }
 }

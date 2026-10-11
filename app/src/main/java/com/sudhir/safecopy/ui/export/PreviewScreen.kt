@@ -1,6 +1,7 @@
 package com.sudhir.safecopy.ui.export
 
 import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -44,6 +45,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.sudhir.safecopy.MainActivity
 import com.sudhir.safecopy.R
 import com.sudhir.safecopy.appContainer
 import com.sudhir.safecopy.core.files.ShareIntents
@@ -158,7 +160,7 @@ fun PreviewRoute(onBack: () -> Unit, onDone: () -> Unit, onExpired: () -> Unit) 
                     onClick = {
                         val export = state.export ?: return@Button
                         try {
-                            context.startActivity(ShareIntents.chooser(export.uri, shareTitle))
+                            context.startActivity(ShareIntents.chooser(export.uri, shareTitle, ComponentName(context, MainActivity::class.java)))
                             vm.onShared()
                         } catch (e: ActivityNotFoundException) {
                             Toast.makeText(context, noApps, Toast.LENGTH_SHORT).show()

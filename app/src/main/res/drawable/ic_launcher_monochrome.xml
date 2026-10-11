@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed-icon layer (Android 13+): single colour, card with a masked bar and a check. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M34,40 h40 a4,4 0 0 1 4,4 v22 a4,4 0 0 1 -4,4 h-40 a4,4 0 0 1 -4,-4 v-22 a4,4 0 0 1 4,-4 z M35,61 h22 v5 h-22 z M35,45 h10 v12 h-10 z" />
+    <path
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M66.5,66 l3.7,3.7 l7,-7.4" />
+</vector>

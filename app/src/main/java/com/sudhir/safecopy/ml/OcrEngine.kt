@@ -33,6 +33,7 @@ class OcrEngine {
                             symbols = el.symbols.mapNotNull { s -> s.boundingBox?.let { OcrSymbol(s.text, it.toRect()) } },
                         )
                     },
+                    angle = line.angle,
                 )
             }
         }

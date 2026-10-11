@@ -31,12 +31,15 @@ class ExporterTest {
                 ExifInterface.TAG_MODEL,
                 ExifInterface.TAG_DATETIME_ORIGINAL,
                 ExifInterface.TAG_DATETIME,
-                ExifInterface.TAG_ORIENTATION,
                 ExifInterface.TAG_SOFTWARE,
             )) {
                 assertWithMessage(tag).that(exif.getAttribute(tag)).isNull()
             }
             assertThat(exif.latLong).isNull()
+            // ExifInterface reports orientation "0" (undefined) even with no EXIF at all, so
+            // check the file itself: no APP1 segment (EXIF or XMP) may exist. JFIF (APP0) and
+            // the sRGB colour profile (APP2) carry no personal data.
+            assertThat(jpegSegments(export.file.readBytes())).doesNotContain(0xE1)
         } finally {
             exporter.delete(export)
         }
@@ -54,5 +57,19 @@ class ExporterTest {
         } finally {
             exporter.delete(export)
         }
+    }
+
+    /** Marker bytes of every segment before the image data (SOS). */
+    private fun jpegSegments(b: ByteArray): List<Int> {
+        val markers = mutableListOf<Int>()
+        var i = 2 // after SOI
+        while (i + 3 < b.size && b[i] == 0xFF.toByte()) {
+            val marker = b[i + 1].toInt() and 0xFF
+            markers += marker
+            if (marker == 0xDA) break
+            val length = ((b[i + 2].toInt() and 0xFF) shl 8) or (b[i + 3].toInt() and 0xFF)
+            i += 2 + length
+        }
+        return markers
     }
 }

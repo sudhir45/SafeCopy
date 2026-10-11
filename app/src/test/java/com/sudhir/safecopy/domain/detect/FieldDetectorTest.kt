@@ -33,7 +33,6 @@ class FieldDetectorTest {
             FieldType.DOB, false,
         )
         assertThat(r.qrHint).isFalse()
-        assertThat(r.hasStrongMatch).isTrue()
     }
 
     @Test
@@ -52,21 +51,18 @@ class FieldDetectorTest {
         val r = FieldDetector.detect(OcrFixtures.result("hello world"), emptyList(), 100, 100)
         assertThat(r.nothingFound).isTrue()
         assertThat(r.docType).isEqualTo(DocType.UNKNOWN)
-        assertThat(r.hasStrongMatch).isFalse()
     }
 
     @Test
-    fun qrAloneDoesNotWinOrientationScore() {
-        val sidewaysWithQr = FieldDetector.detect(OcrFixtures.result("x y z"), listOf(qr, qr.translate(200f, 0f)), 1000, 1000)
-        val uprightNoQr = FieldDetector.detect(front, emptyList(), 1000, 1000)
-        assertThat(uprightNoQr.score).isGreaterThan(sidewaysWithQr.score)
-    }
-
-    @Test
-    fun scorePrefersStrongMatchesOverText() {
-        val strong = FieldDetector.detect(front, listOf(qr), 1000, 1000)
-        val gibberish = FieldDetector.detect(OcrFixtures.result("x".repeat(400)), emptyList(), 1000, 1000)
-        assertThat(strong.score).isGreaterThan(gibberish.score)
+    fun uprightTurnFollowsMostOfTheText() {
+        fun result(vararg angles: Float) = OcrResult(angles.mapIndexed { i, a -> OcrFixtures.line("ABCDEFGHIJ", i).copy(angle = a) })
+        assertThat(result(0f, 0f, 2f).uprightTurn()).isEqualTo(0)
+        assertThat(result(-8f, -7f, -9f).uprightTurn()).isEqualTo(0) // tilted photo, not sideways
+        assertThat(result(90f, 90f, 91f).uprightTurn()).isEqualTo(270)
+        assertThat(result(180f, 179f, -180f).uprightTurn()).isEqualTo(180)
+        assertThat(result(-90f, -90f).uprightTurn()).isEqualTo(90)
+        assertThat(result(90f, 0f).uprightTurn()).isEqualTo(0) // no clear majority
+        assertThat(OcrResult(emptyList()).uprightTurn()).isEqualTo(0)
     }
 }
 

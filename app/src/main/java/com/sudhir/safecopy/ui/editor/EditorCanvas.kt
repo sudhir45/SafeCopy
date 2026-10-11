@@ -229,8 +229,10 @@ fun EditorCanvas(
             if (mask.enabled) continue
             val a = t.toView(Point(mask.rect.left, mask.rect.top))
             val b = t.toView(Point(mask.rect.right, mask.rect.bottom))
+            // Dark under-stroke plus light dashes: visible on white cards and dark photos alike.
+            drawRect(Color.Black.copy(alpha = 0.55f), Offset(a.x, a.y), Size(b.x - a.x, b.y - a.y), style = Stroke(strokePx * 1.5f))
             drawRect(
-                Color.White.copy(alpha = 0.8f), Offset(a.x, a.y), Size(b.x - a.x, b.y - a.y),
+                Color.White, Offset(a.x, a.y), Size(b.x - a.x, b.y - a.y),
                 style = Stroke(strokePx, pathEffect = PathEffect.dashPathEffect(floatArrayOf(strokePx * 4, strokePx * 3))),
             )
         }

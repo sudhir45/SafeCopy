@@ -4,11 +4,13 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth.assertWithMessage
 import com.sudhir.safecopy.domain.model.FieldType
 import com.sudhir.safecopy.domain.model.MaskRect
 import com.sudhir.safecopy.domain.model.Rect
 import com.sudhir.safecopy.domain.model.WatermarkSize
 import com.sudhir.safecopy.domain.model.WatermarkStyle
+import com.sudhir.safecopy.domain.watermark.WatermarkLayout
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -60,14 +62,16 @@ class ComposerTest {
                 val white = Bitmap.createBitmap(1000, 700, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.WHITE) }
                 val wm = WatermarkRender("FOR TEST BANK KYC ONLY · 11 OCT 2026", WatermarkStyle(angleDegrees = angle, size = size))
                 val out = Composer.compose(white, emptyList(), wm)
-                // Every 125 px cell must contain some watermark ink.
-                val cell = 125
+                // Rows are 3.2 × font apart (spec 8.1); at 45° that's ~4.5 × font vertically.
+                // A cell 1.5 × the row spacing always crosses at least one row of text.
+                val rowSpacing = WatermarkLayout.fontSize(1000, size) * WatermarkLayout.ROW_SPACING
+                val cell = (rowSpacing * 1.5f).toInt()
                 for (cy in 0 until 700 / cell) for (cx in 0 until 1000 / cell) {
                     var inked = false
                     loop@ for (y in cy * cell until (cy + 1) * cell) for (x in cx * cell until (cx + 1) * cell) {
                         if (out.getPixel(x, y) != Color.WHITE) { inked = true; break@loop }
                     }
-                    assertThat(inked).isTrue()
+                    assertWithMessage("bare cell ($cx,$cy) at angle $angle size $size").that(inked).isTrue()
                 }
             }
         }

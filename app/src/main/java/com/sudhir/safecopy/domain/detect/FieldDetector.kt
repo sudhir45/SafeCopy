@@ -52,7 +52,6 @@ object FieldDetector {
             fields = fields,
             masks = MaskMerger.merge(fields, imageWidth, imageHeight),
             qrHint = docType == DocType.AADHAAR && qrBoxes.isEmpty(),
-            textAmount = ocr.alnumCount,
         )
     }
 }
