@@ -17,8 +17,11 @@ keystore.properties
 # Real ID photos for manual testing only, never commit (spec 15.1)
 private_samples/
 
-# Claude Code per-user settings
-.claude/settings.local.json
+# Local working notes and AI-assistant config: kept on the dev machine, never published
+SAFECOPY_SPEC.md
+PROJECT_LOG.md
+CLAUDE.md
+.claude/
 
 # Python venv for tools/fixtures (dev only)
 tools/fixtures/.venv/

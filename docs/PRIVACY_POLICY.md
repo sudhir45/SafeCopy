@@ -1,30 +1,27 @@
 # SafeCopy privacy policy
 
-_Last updated: 11 October 2026_
+Last updated 11 October 2026.
 
-SafeCopy makes safer copies of ID document photos. It runs entirely on your phone.
+SafeCopy runs entirely on your phone. It has no internet permission, so Android doesn't let it connect to anything.
 
-## What SafeCopy does with your photos
+## Your photos
 
-- You choose a photo from your gallery, take one with your camera app, or share one to SafeCopy from another app.
-- SafeCopy reads the photo on your phone to find sensitive details such as an Aadhaar number, PAN or QR code. This text recognition runs on the device; the photo is not uploaded anywhere.
-- SafeCopy creates a new image with those details covered and a watermark added. That new image has no location, camera or date metadata.
-- The original photo is kept in memory only while you edit. Any temporary copy is deleted when you share or save, when you discard, and the next time the app starts. Copies you share are kept in the app's private cache for up to one hour, so the app you shared them with can read them, and are then deleted.
-- SafeCopy never decodes or stores the contents of QR codes. It only finds where they are so it can cover them.
+You pick a photo from your gallery, take one with your camera app, or share one to SafeCopy from another app. SafeCopy reads it on the phone to find the ID number, QR code and similar details. The photo isn't uploaded anywhere.
 
-## What SafeCopy stores
+The copy SafeCopy makes is a new image with the chosen parts covered and a watermark added. It has no location, camera or date data.
 
-- Your settings (mask and watermark defaults).
-- The last 10 recipient names you typed, so you can pick them again. They are recorded only when you actually share or save a copy.
+The original photo is kept in memory while you edit. If a temporary copy is written to the app's private storage, it's deleted when you share or save, when you discard, and the next time the app starts. A copy you share stays in the app's private cache for up to an hour so the app you shared it with can read it, then it's deleted.
 
-Both are stored only in SafeCopy's private storage on your phone. They are excluded from Android backups and device-to-device transfers. You can delete them at any time with **Settings → Clear all data**, or by uninstalling the app.
+SafeCopy finds where QR codes are so it can cover them. It never reads or stores what's inside them.
 
-## What SafeCopy does not do
+## What's stored
 
-- It has **no internet permission**, so Android does not allow it to use the network. Nothing you do in SafeCopy is sent anywhere.
-- No accounts, no analytics, no advertising, no crash reporting.
-- It does not collect, share or sell any data.
+SafeCopy keeps your settings and the last 10 recipient names you used, so you can pick them again. A name is saved only when you share or save a copy. Both stay in the app's private storage, are left out of Android backups and device transfers, and are deleted by Settings → Clear all data or by uninstalling the app.
+
+## What isn't
+
+There are no accounts, ads, analytics or crash reports. SafeCopy doesn't collect, share or sell any data.
 
 ## Contact
 
-Questions about this policy: open an issue at https://github.com/sudhir45/SafeCopy/issues
+Questions go to the issue tracker: https://github.com/sudhir45/SafeCopy/issues
