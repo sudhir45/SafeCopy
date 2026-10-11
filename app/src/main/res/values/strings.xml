@@ -10,4 +10,23 @@
     <string name="home_trust_badge">Offline · No internet permission</string>
     <string name="home_tip">Tip: In WhatsApp, share the ID photo to SafeCopy instead of the chat.</string>
     <string name="coming_soon">Not available yet</string>
+    <string name="home_loading_image">Opening image</string>
+
+    <string name="error_too_large">This image is too large. Pick one under 25 MB.</string>
+    <string name="error_not_an_image">That file isn\'t an image SafeCopy can open.</string>
+    <string name="error_unreadable">Couldn\'t open this image. Try picking it again.</string>
+    <string name="error_no_camera_app">No camera app found on this phone.</string>
+    <string name="error_camera_failed">Couldn\'t read the photo from the camera. Try again.</string>
+
+    <string name="editor_title">Edit</string>
+    <string name="editor_rotate">Rotate</string>
+    <string name="editor_image_description">Document being edited</string>
+    <string name="editor_session_expired">Session expired, please pick the image again</string>
+    <string name="editor_discard_title">Discard this copy?</string>
+    <string name="editor_discard_message">Your changes will be lost and the photo removed from SafeCopy.</string>
+
+    <string name="action_back">Back</string>
+    <string name="action_next">Next</string>
+    <string name="action_discard">Discard</string>
+    <string name="action_keep_editing">Keep editing</string>
 </resources>
