@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SafeCopy</string>
+
+    <string name="home_title">Make a safe copy of your ID</string>
+    <string name="home_subtitle">Mask sensitive numbers, stamp who it\'s for, strip hidden metadata.</string>
+    <string name="home_choose_photo">Choose photo</string>
+    <string name="home_take_photo">Take photo</string>
+    <string name="home_settings">Settings</string>
+    <string name="home_help">Help</string>
+    <string name="home_trust_badge">Offline · No internet permission</string>
+    <string name="home_tip">Tip: In WhatsApp, share the ID photo to SafeCopy instead of the chat.</string>
+    <string name="coming_soon">Not available yet</string>
+</resources>

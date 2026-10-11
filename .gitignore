@@ -1,0 +1,21 @@
+.gradle/
+build/
+/app/build/
+local.properties
+.kotlin/
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing material is never committed (spec 14.4)
+*.jks
+*.keystore
+keystore.properties
+
+# Real ID photos for manual testing only, never commit (spec 15.1)
+private_samples/
+
+# Claude Code per-user settings
+.claude/settings.local.json

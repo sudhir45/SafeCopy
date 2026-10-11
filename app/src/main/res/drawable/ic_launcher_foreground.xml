@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder icon: an ID card with a masked bar. Final icon lands in M6. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- card -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,38h40a4,4 0,0 1,4 4v24a4,4 0,0 1,-4 4h-40a4,4 0,0 1,-4 -4v-24a4,4 0,0 1,4 -4z" />
+    <!-- mask bar -->
+    <path
+        android:fillColor="#1F4E46"
+        android:pathData="M38,56h22v6h-22z" />
+    <!-- visible digits stub -->
+    <path
+        android:fillColor="#7FA8A0"
+        android:pathData="M63,56h8v6h-8z" />
+    <!-- photo block -->
+    <path
+        android:fillColor="#7FA8A0"
+        android:pathData="M38,44h10v8h-10z" />
+</vector>

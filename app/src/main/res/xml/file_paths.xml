@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Expose only the cache subfolders (spec 14.1). Never the source/ folder. -->
+<paths>
+    <cache-path name="export" path="export/" />
+    <cache-path name="camera" path="camera/" />
+</paths>
